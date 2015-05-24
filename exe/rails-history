@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+lines = File.open('.rails_history').readlines
+digits = lines.size.to_s.size + 2
+
+lines.each.with_index do |line, i|
+  puts sprintf("%#{digits}d  %s", i + 1, line)
+end
