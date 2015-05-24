@@ -13,7 +13,6 @@ module RailsHistory
 
           history_file_path = Rails.root.join('.rails_history')
           command = [].tap do |a|
-            a << 'bundle exec' if ENV['BUNDLE_GEMFILE'].present?
             a << 'rails'
 
             if config[:behavior] == :revoke
