@@ -1,8 +1,22 @@
 #!/usr/bin/env ruby
+require 'active_support/all'
 
+exit(0) unless File.exist?('.rails_history')
+
+index = ARGV.shift
 lines = File.open('.rails_history').readlines
-digits = lines.size.to_s.size + 2
 
-lines.each.with_index do |line, i|
-  puts sprintf("%#{digits}d  %s", i + 1, line)
+if index.blank?
+  digits = lines.size.to_s.size + 2
+  lines.each.with_index do |line, i|
+    puts format("%#{digits}d  %s", i + 1, line)
+  end
+else
+  command = lines[index.to_i - 1]
+  exit(1) if command.blank?
+
+  command = ['bundle exec', command].join(' ') if ENV['BUNDLE_GEMFILE'].present?
+
+  puts command
+  system(command)
 end
