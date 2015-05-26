@@ -1,8 +1,6 @@
 # RailsHistory
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails_history`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A command like history for rails.
 
 ## Installation
 
@@ -22,7 +20,33 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### History Recording
+
+This gem records rails generate/destroy histories on the `.rails_history` file automatically.
+
+```
+$ rails g model sample
+$ cat .rails_history
+rails generate model sample
+```
+
+### History Reference
+
+The `rails-history` command show entries in the history list:
+
+```
+$ bundle exec rails-history
+  1  rails generate model sample
+```
+
+You can re-execute a command in the history list:
+
+```
+$ bundle exec rails-history 1
+bundle exec rails generate model sample
+      invoke  active_record
+      ...
+```
 
 ## Development
 
@@ -37,3 +61,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## TODO
+
+* Options like `history` command
